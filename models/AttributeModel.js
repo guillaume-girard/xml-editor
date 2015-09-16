@@ -1,3 +1,5 @@
+"use strict";
+
 WFEditor.AttributeModel = Backbone.Model.extend({
 
     render: function() {

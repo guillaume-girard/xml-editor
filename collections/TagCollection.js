@@ -1,3 +1,5 @@
+"use strict";
+
 WFEditor.TagCollection = Backbone.Collection.extend({
     model: WFEditor.TagModel,
 

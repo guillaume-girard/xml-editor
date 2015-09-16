@@ -1,3 +1,5 @@
+"use strict";
+
 WFEditor.TagGroup = Backbone.Model.extend({
 
     initialize: function() {

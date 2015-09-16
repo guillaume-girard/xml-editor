@@ -1,3 +1,5 @@
+"use strict";
+
 WFEditor.AttributeCollectionView = Backbone.View.extend({
     tagName: "div",
     className: "attribute-collection",

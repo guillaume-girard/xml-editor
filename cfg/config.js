@@ -1,3 +1,5 @@
+"use strict";
+
 var WFEditor = WFEditor || {};
 WFEditor.Config = {
     _attributes_: {
@@ -81,5 +83,3 @@ WFEditor.Config = {
         }
     }
 };
-
-var basedata = {};

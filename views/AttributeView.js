@@ -1,3 +1,5 @@
+"use strict";
+
 WFEditor.AttributeView = Backbone.View.extend({
     
     tagName: "div",

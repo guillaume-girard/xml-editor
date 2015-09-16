@@ -1,3 +1,5 @@
+"use strict";
+
 WFEditor.TagView = Backbone.View.extend({
     tagName: "div",
     className: "tag",

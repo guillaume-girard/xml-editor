@@ -1,3 +1,5 @@
+"use strict";
+
 WFEditor.TagModel = Backbone.Model.extend({
     initialize: function(data) {
         return this;

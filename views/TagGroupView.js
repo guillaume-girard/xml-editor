@@ -1,3 +1,5 @@
+"use strict";
+
 WFEditor.TagGroupView = Backbone.View.extend({
     tagName: "div",
     className: "tag-group",
