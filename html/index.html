@@ -64,7 +64,7 @@
     			
     		</div>
             <div id="json-receiver"></div>
-            <button onclick="document.getElementById('json-receiver').innerText = JSON.stringify(unstate.getJSON())">JSON</button>
+            <button onclick="document.getElementById('json-receiver').innerText = JSON.stringify(unstate.getJSON())">Get JSON</button>
         </form>
 		<script type="text/template" id="tag-template">
             <% if(deletable) { %>
@@ -144,7 +144,7 @@
         <!--<script type="text/javascript" src="../models/StateModel.js"></script>
         <script type="text/javascript" src="../views/StateView.js"></script> -->
         <script type="text/javascript">
-            var unstate = new WFEditor.TagModel({config: baseconfig, data: basedata}, {parse: true});
+            var unstate = new WFEditor.TagModel({config: WFEditor.Config, data: {}}, {parse: true});
             (new WFEditor.TagView({el: "#wrapper", model: unstate})).render('State principal', false);
         </script>
 	</body>

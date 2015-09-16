@@ -1,5 +1,5 @@
 var WFEditor = WFEditor || {};
-var WFEditor.StateConfig = {
+WFEditor.Config = {
     _attributes_: {
         id: {  // id pour le graph
             xmlName: "Id",  // nom affiché + nom de l'attr dans le xml
