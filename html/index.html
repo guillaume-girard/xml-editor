@@ -1,0 +1,151 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Backbone WFEditor</title>
+        <link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
+        <link rel="stylesheet" href="../font-awesome/css/font-awesome.min.css">
+        <style type="text/css">
+            #wrapper {
+                width: 50%;
+                margin: auto;
+            }
+            .tag-group, 
+            .tag,
+            .attribute-collection,
+            .attribute {
+                margin: 5px;
+                padding: 10px;
+            }
+            .tag, .attribute {
+                position: relative;
+            }
+            .tag-group {
+                background-color: lightgrey;
+            }
+            .tag {
+                border: 1px dashed grey;
+            }
+            .attribute-collection {
+                background-color: #FFFF99;
+            }
+            .attribute {
+                border: 1px solid grey;
+            }
+            .attribute:hover > .delete-button, 
+            .tag:hover > .delete-button {
+                display: block;
+            }
+            .delete-button {
+                transition: opacity 0.5s;
+                width: 30px; height: 30px; display: none;
+                border-radius: 20px;
+                color: whitesmoke; text-align: center; font-size: 20px; font-weight: bold; line-height: 30px;
+                background-color: rgb(176,0,0);
+                opacity: 0.2;
+                position: absolute;
+                cursor: pointer;
+            }
+            .attribute > .delete-button {
+                top: calc(50% - 15px); right: 20px;
+                
+            }
+            .tag > .delete-button {
+                top: -15px; right: -15px;
+            }
+            .delete-button:hover {
+                transition: opacity 0.5s;
+                opacity: 1;
+            }
+        </style>
+	</head>
+	<body>
+        <form class="form-horizontal">
+    		<div id="wrapper">
+    			
+    		</div>
+            <div id="json-receiver"></div>
+            <button onclick="document.getElementById('json-receiver').innerText = JSON.stringify(unstate.getJSON())">JSON</button>
+        </form>
+		<script type="text/template" id="tag-template">
+            <% if(deletable) { %>
+                <div class="delete-button" title="Supprimer cette balise <%- xmlName %>"><i class="fa fa-times"></i></div>
+            <% } %>
+            <% if(typeof text !== "undefined") { %>
+                <div class="control-group">
+                    <label class="control-label">Text</label>
+                    <div class="controls">
+                        <textarea class="input-large text-container"><%- text %></textarea>
+                    </div>
+                </div>
+            <% } %>
+		</script>
+
+        <script type="text/template" id="tagGroup-template">
+            <fieldset>
+                <legend>Balise<% if(multiple) { %>s<% } %> &lt;<%- xmlName %>&gt;</legend>
+                <div class="tagGroup-content"></div>
+                <% if(addable) { %>
+                   <div class="btn add-button">Ajouter une balise <%- xmlName %></div>
+                <% } %>
+            </fieldset>
+        </script>
+
+		<script type="text/template" id="attr-template">
+            <% if(!required && typeof value !== 'undefined') { %>
+                <div class="delete-button" title="Supprimer l'attribut <%- xmlName %>"><i class="fa fa-times"></i></div>
+            <% } %>
+            <div class="control-group">
+                <% if(typeof value !== 'undefined') { %>
+                    <label class="control-label"><%- xmlName %></label>
+                    <div class="controls">
+                        <% switch (type) {
+                            case "input": %>
+                                <input class="input-large value-container" type="text" value="<%- value %>" <% if (required) { %> required="required" <% } %>/>
+                                <% break;
+                            case "checkbox":
+                            case "boolean": %>
+                                <input class="value-container" type="checkbox" <% if(value || defaultvalue) { %> checked="checked" <% } %> />
+                                <% break;
+                            case "textarea": %>
+                                <textarea class="input-large value-container" <% if (required) { %> required="required" <% } %>><%- value %></textarea>
+                                <% break;
+                            case "select": %>
+                                <select class="input-large value-container">
+                                    <% possibleValues.forEach(function(val) { %>
+                                        <option value="<%- val %>" <% value = value === null ? "": value; if (value == val || (value.length == 0 && defaultvalue != null && val == defaultvalue)) { %> selected="selected" <% } %>><%- val %></option>
+                                    <% }); %>
+                                </select>
+                                <% break;
+                        } %>
+                    </div>
+                    <% } else { %>
+                        <div class="btn add-button">Ajouter <%- xmlName %></div>
+                    <% } %>
+            </div>
+		</script>
+
+        <script type="text/template" id="attrCollection-template">
+            <legend>Attributs de la balise</legend>
+        </script>
+
+        <script type="text/javascript" src="../cfg/config.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script type="text/javascript" src="../libs/underscore.js"></script>
+		<script type="text/javascript" src="../libs/backbone.js"></script>
+        <script type="text/javascript" src="../models/AttributeModel.js"></script>
+        <script type="text/javascript" src="../views/AttributeView.js"></script>
+        <script type="text/javascript" src="../collections/AttributeCollection.js"></script>
+        <script type="text/javascript" src="../views/AttributeCollectionView.js"></script>
+        <script type="text/javascript" src="../models/TagModel.js"></script>
+        <script type="text/javascript" src="../views/TagView.js"></script>
+        <script type="text/javascript" src="../collections/TagCollection.js"></script>
+        <script type="text/javascript" src="../models/TagGroup.js"></script>
+        <script type="text/javascript" src="../views/TagGroupView.js"></script>
+        <!--<script type="text/javascript" src="../models/StateModel.js"></script>
+        <script type="text/javascript" src="../views/StateView.js"></script> -->
+        <script type="text/javascript">
+            var unstate = new WFEditor.TagModel({config: baseconfig, data: basedata}, {parse: true});
+            (new WFEditor.TagView({el: "#wrapper", model: unstate})).render('State principal', false);
+        </script>
+	</body>
+</html>
