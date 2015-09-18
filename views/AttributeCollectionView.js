@@ -1,6 +1,6 @@
 "use strict";
 
-WFEditor.AttributeCollectionView = Backbone.View.extend({
+XMLEditor.AttributeCollectionView = Backbone.View.extend({
     tagName: "div",
     className: "attribute-collection",
 
@@ -12,7 +12,7 @@ WFEditor.AttributeCollectionView = Backbone.View.extend({
         this.$el.empty();
         this.$el.html(this.template());
         this.collection.each(function(attr){
-            var attrView = new WFEditor.AttributeView({ model: attr });
+            var attrView = new XMLEditor.AttributeView({ model: attr });
             this.$el.append(attrView.render().el);
         }, this);
         return this;

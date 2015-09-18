@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 	<head>
-		<title>Backbone WFEditor</title>
+		<title>Backbone XMLEditor</title>
         <link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
         <link rel="stylesheet" href="../font-awesome/css/font-awesome.min.css">
         <style type="text/css">
@@ -64,7 +64,7 @@
     			
     		</div>
             <div id="json-receiver"></div>
-            <button onclick="document.getElementById('json-receiver').innerText = JSON.stringify(unstate.getJSON())">Get JSON</button>
+            <button id="getJSON">Get JSON</button>
         </form>
 		<script type="text/template" id="tag-template">
             <% if(deletable) { %>
@@ -129,7 +129,7 @@
         </script>
 
         <script type="text/javascript" src="../cfg/config.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
         <script type="text/javascript" src="../libs/underscore.js"></script>
 		<script type="text/javascript" src="../libs/backbone.js"></script>
         <script type="text/javascript" src="../models/AttributeModel.js"></script>
@@ -141,11 +141,13 @@
         <script type="text/javascript" src="../collections/TagCollection.js"></script>
         <script type="text/javascript" src="../models/TagGroup.js"></script>
         <script type="text/javascript" src="../views/TagGroupView.js"></script>
-        <!--<script type="text/javascript" src="../models/StateModel.js"></script>
-        <script type="text/javascript" src="../views/StateView.js"></script> -->
         <script type="text/javascript">
-            var unstate = new WFEditor.TagModel({config: WFEditor.Config, data: {}}, {parse: true});
-            (new WFEditor.TagView({el: "#wrapper", model: unstate})).render('State principal', false);
+            var root = new XMLEditor.TagModel({config: XMLEditor.Config, data: {}}, {parse: true});
+            (new XMLEditor.TagView({el: "#wrapper", model: root})).render('root', false);
+
+            $("#getJSON").click(function() {
+                $("#json-receiver").text(JSON.stringify(root.getJSON()));
+            });
         </script>
 	</body>
 </html>

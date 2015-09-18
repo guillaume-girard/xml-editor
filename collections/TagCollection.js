@@ -1,7 +1,7 @@
 "use strict";
 
-WFEditor.TagCollection = Backbone.Collection.extend({
-    model: WFEditor.TagModel,
+XMLEditor.TagCollection = Backbone.Collection.extend({
+    model: XMLEditor.TagModel,
 
     initialize: function() {
         this.on("destroy", this.alerting, this);

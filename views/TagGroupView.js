@@ -1,6 +1,6 @@
 "use strict";
 
-WFEditor.TagGroupView = Backbone.View.extend({
+XMLEditor.TagGroupView = Backbone.View.extend({
     tagName: "div",
     className: "tag-group",
 
@@ -20,7 +20,7 @@ WFEditor.TagGroupView = Backbone.View.extend({
         
         this.contenu = this.$el.children("fieldset").children(".tagGroup-content");
         this.model.get("collection").each(function(tag) {
-            var tagView = new WFEditor.TagView({ model: tag });
+            var tagView = new XMLEditor.TagView({ model: tag });
             this.contenu.append(tagView.render(this.model.get("xmlName"), deletable).el);
         }, this);
 
@@ -38,7 +38,7 @@ WFEditor.TagGroupView = Backbone.View.extend({
         "click addButton": "addTag"
     },
     addTag: function() {
-        var newTag = new WFEditor.TagModel({config: this.model.config, data: {}}, {parse: true})
+        var newTag = new XMLEditor.TagModel({config: this.model.config, data: {}}, {parse: true})
         this.model.get("collection").add(newTag);
     }
 });

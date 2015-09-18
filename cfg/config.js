@@ -1,7 +1,7 @@
 "use strict";
 
-var WFEditor = WFEditor || {};
-WFEditor.Config = {
+var XMLEditor = XMLEditor || {};
+XMLEditor.Config = {
     _attributes_: {
         id: {  // id pour le graph
             xmlName: "Id",  // nom affiché + nom de l'attr dans le xml

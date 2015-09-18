@@ -1,7 +1,7 @@
 "use strict";
 
-WFEditor.AttributeCollection = Backbone.Collection.extend({
-    model: WFEditor.AttributeModel,
+XMLEditor.AttributeCollection = Backbone.Collection.extend({
+    model: XMLEditor.AttributeModel,
 
     initialize: function() {
         this.on("add remove", this.render);
@@ -23,7 +23,7 @@ WFEditor.AttributeCollection = Backbone.Collection.extend({
                 objAttr.value = data[element];
             else if(objAttr.required)
                 objAttr.value = objAttr.defaultvalue;
-            arrayParsed.push(new WFEditor.AttributeModel(objAttr));
+            arrayParsed.push(new XMLEditor.AttributeModel(objAttr));
         });
 
         return arrayParsed;

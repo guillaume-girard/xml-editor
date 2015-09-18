@@ -1,6 +1,6 @@
 "use strict";
 
-WFEditor.TagView = Backbone.View.extend({
+XMLEditor.TagView = Backbone.View.extend({
     tagName: "div",
     className: "tag",
 
@@ -24,11 +24,11 @@ WFEditor.TagView = Backbone.View.extend({
         }.bind(this));
 
         if(this.model.get("allAttrs").length > 0) {
-            this.$el.append((new WFEditor.AttributeCollectionView({ collection: this.model.get("allAttrs") })).render().el);
+            this.$el.append((new XMLEditor.AttributeCollectionView({ collection: this.model.get("allAttrs") })).render().el);
         }
         if(this.model.get("allTags").length > 0) {
             _.each(this.model.get("allTags"), function(tagGroup) {
-                var tmp = (new WFEditor.TagGroupView({ model: tagGroup })).render();
+                var tmp = (new XMLEditor.TagGroupView({ model: tagGroup })).render();
                 this.$el.append(tmp.el);
             }, this);
         }

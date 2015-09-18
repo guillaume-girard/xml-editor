@@ -1,6 +1,6 @@
 "use strict";
 
-WFEditor.AttributeModel = Backbone.Model.extend({
+XMLEditor.AttributeModel = Backbone.Model.extend({
 
     render: function() {
         this.trigger("render");

@@ -1,6 +1,6 @@
 "use strict";
 
-WFEditor.TagGroup = Backbone.Model.extend({
+XMLEditor.TagGroup = Backbone.Model.extend({
 
     initialize: function() {
         this.listenTo(this.get("collection"), "add remove", this.render);
@@ -22,13 +22,13 @@ WFEditor.TagGroup = Backbone.Model.extend({
 
         var tags = [];
         if(config.required && data.length == 0) {
-            tags.push(new WFEditor.TagModel({config: config, data: {}}, {parse: true}));
+            tags.push(new XMLEditor.TagModel({config: config, data: {}}, {parse: true}));
         }
         _.each(data, function(element) {
-            tags.push(new WFEditor.TagModel({config: config, data: element}, {parse: true}));
+            tags.push(new XMLEditor.TagModel({config: config, data: element}, {parse: true}));
         });
 
-        objParsed.collection = new WFEditor.TagCollection(tags);
+        objParsed.collection = new XMLEditor.TagCollection(tags);
 
         return objParsed;
     },
