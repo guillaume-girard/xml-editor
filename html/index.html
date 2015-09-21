@@ -142,11 +142,12 @@
         <script type="text/javascript" src="../models/TagGroup.js"></script>
         <script type="text/javascript" src="../views/TagGroupView.js"></script>
         <script type="text/javascript">
-            var root = new XMLEditor.TagModel({config: XMLEditor.Config, data: {}}, {parse: true});
-            (new XMLEditor.TagView({el: "#wrapper", model: root})).render('root', false);
+            var library = new XMLEditor.TagModel({config: XMLEditor.Config, data: {}}, {parse: true});
+            (new XMLEditor.TagView({el: "#wrapper", model: library})).render('library', false);
 
-            $("#getJSON").click(function() {
-                $("#json-receiver").text(JSON.stringify(root.getJSON()));
+            $("#getJSON").click(function(evt) {
+                evt.preventDefault()
+                $("#json-receiver").text(JSON.stringify(library.getJSON()));
             });
         </script>
 	</body>
