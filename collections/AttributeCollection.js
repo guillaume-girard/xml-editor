@@ -33,6 +33,13 @@ XMLEditor.AttributeCollection = Backbone.Collection.extend({
             return val != undefined;
         }).join(",")) + "}");
         return obj;
+    },
+    toXML: function() {
+        var xml = (this.invoke("toXML")).filter(function(val) {
+            return val != undefined;
+        }).join(" ");
+        
+        return xml;
     }
 
 });

@@ -14,6 +14,16 @@ XMLEditor.AttributeModel = Backbone.Model.extend({
         str += this.get("value") === null ? 'null' : '"' + this.get("value") + '"';
 
         return str;
+    },
+    toXML: function() {
+        if(typeof this.get("value") === 'undefined') {
+            return;
+        }
+        var str = this.id + '="';
+        str += this.get("value") === null ? "" : this.get("value");
+        str += '"';
+
+        return str;
     }
 
 });

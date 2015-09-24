@@ -39,6 +39,13 @@ XMLEditor.TagGroup = Backbone.Model.extend({
             return val;
         }
         return;
+    },
+    toXML: function() {
+        var xml = this.get("collection").toXML(this.get("id"));
+        if(xml) {
+            return xml;
+        }
+        return;
     }
     
 });

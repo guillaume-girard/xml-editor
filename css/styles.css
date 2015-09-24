@@ -7,13 +7,6 @@ body {
     float: left;
     margin: 10px;
 }
-#wrapper::after {
-    content: " ";
-    display: table;
-    clear: both;
-    float:left;
-    width: 100%;
-}
 .tag-content {
     margin-left: 20px;
     border-left: 1px dashed lightgrey;
@@ -77,10 +70,10 @@ body {
 }
 
 
-#json-receiver {
+#json-receiver, #xml-receiver {
     float: left;
     width: 400px;
 }
-#getJSON {
+#getJSON, #getXML {
     float: left;
 }

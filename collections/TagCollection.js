@@ -4,9 +4,12 @@ XMLEditor.TagCollection = Backbone.Collection.extend({
     model: XMLEditor.TagModel,
 
     initialize: function() {
-        this.on("destroy", this.alerting, this);
+        this.on("destroy", this.removeModel, this);
 
         return this;
+    },
+    removeModel: function(model) {
+        this.remove(model);
     },
     getJSON: function() {
         var array = [];
@@ -18,8 +21,15 @@ XMLEditor.TagCollection = Backbone.Collection.extend({
 
         return _.isEmpty(array) ? false : array;
     },
-    alerting: function(model) {
-        this.remove(model);
+    toXML:function(tagName) {
+        var array = [];
+        this.each(function(tag) {
+            var val = tag.toXML(tagName);
+            if(val)
+                array.push(val);
+        })
+
+        return _.isEmpty(array) ? false : array.join("");
     }
     
 });

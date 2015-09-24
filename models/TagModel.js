@@ -55,6 +55,31 @@ XMLEditor.TagModel = Backbone.Model.extend({
         }
         
         return _.isEmpty(obj) ? false : obj;
+    },
+    toXML: function(tagName) {
+        console.log("++++++++++++" + tagName);
+        console.log(this);
+        var xml = "<" + tagName;
+
+        if(this.get("allAttrs").length > 0) {
+            xml += " " + this.get("allAttrs").toXML();
+        }
+        if(!this.has("text") && this.get("allTags").length == 0) {
+            xml += " />"
+        } else {
+            xml += ">";
+            if(this.has("text")) {
+                xml += this.get("text");
+            }
+            if(this.get("allTags").length > 0) {
+                xml += _.invoke(this.get("allTags"), "toXML").filter(function(val) {
+                    return val != undefined;
+                }).join();
+            }
+            xml += "</" + tagName + ">";
+        }
+        
+        return xml;
     }
     
 });
