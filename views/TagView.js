@@ -17,19 +17,20 @@ XMLEditor.TagView = Backbone.View.extend({
         deletable = deletable || false;
         this.$el.empty();
         this.$el.html(this.template(_.extend({xmlName: xmlName, deletable: deletable}, this.model.toJSON())));
+        this.content = this.$el.children(".tag-content");
 
-        this.deleteButton = this.$el.children(".delete-button");
+        this.deleteButton = this.$el.children("legend").find(".delete-button");
         this.deleteButton.on("click", function() {
             this.removeTag();
         }.bind(this));
 
         if(this.model.get("allAttrs").length > 0) {
-            this.$el.append((new XMLEditor.AttributeCollectionView({ collection: this.model.get("allAttrs") })).render().el);
+            this.content.append((new XMLEditor.AttributeCollectionView({ collection: this.model.get("allAttrs") })).render().el);
         }
         if(this.model.get("allTags").length > 0) {
             _.each(this.model.get("allTags"), function(tagGroup) {
                 var tmp = (new XMLEditor.TagGroupView({ model: tagGroup })).render();
-                this.$el.append(tmp.el);
+                this.content.append(tmp.el);
             }, this);
         }
 

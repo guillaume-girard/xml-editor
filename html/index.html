@@ -3,61 +3,10 @@
 	<head>
 		<title>Backbone XMLEditor</title>
         <link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="../css/styles.css">
         <link rel="stylesheet" href="../font-awesome/css/font-awesome.min.css">
-        <style type="text/css">
-            #wrapper {
-                width: 50%;
-                margin: auto;
-            }
-            .tag-group, 
-            .tag,
-            .attribute-collection,
-            .attribute {
-                margin: 5px;
-                padding: 10px;
-            }
-            .tag, .attribute {
-                position: relative;
-            }
-            .tag-group {
-                background-color: lightgrey;
-            }
-            .tag {
-                border: 1px dashed grey;
-            }
-            .attribute-collection {
-                background-color: #FFFF99;
-            }
-            .attribute {
-                border: 1px solid grey;
-            }
-            .attribute:hover > .delete-button, 
-            .tag:hover > .delete-button {
-                display: block;
-            }
-            .delete-button {
-                transition: opacity 0.5s;
-                width: 30px; height: 30px; display: none;
-                border-radius: 20px;
-                color: whitesmoke; text-align: center; font-size: 20px; font-weight: bold; line-height: 30px;
-                background-color: rgb(176,0,0);
-                opacity: 0.2;
-                position: absolute;
-                cursor: pointer;
-            }
-            .attribute > .delete-button {
-                top: calc(50% - 15px); right: 20px;
-                
-            }
-            .tag > .delete-button {
-                top: -15px; right: -15px;
-            }
-            .delete-button:hover {
-                transition: opacity 0.5s;
-                opacity: 1;
-            }
-        </style>
-	</head>
+        <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,100' rel='stylesheet' type='text/css'>
+    </head>
 	<body>
         <form class="form-horizontal">
     		<div id="wrapper">
@@ -71,25 +20,30 @@
 
 
 		<script type="text/template" id="tag-template">
-            <% if(deletable) { %>
-                <div class="delete-button" title="Supprimer cette balise <%- xmlName %>"><i class="fa fa-times"></i></div>
-            <% } %>
-            <% if(typeof text !== "undefined") { %>
-                <div class="control-group">
-                    <label class="control-label">Text</label>
-                    <div class="controls">
-                        <textarea class="input-large text-container"><%- text %></textarea>
+            <legend>
+                &lt;<%- xmlName %>&gt;
+                <% if(deletable) { %>
+                    <span class="delete-button" title="Supprimer cette balise <%- xmlName %>"><i class="fa fa-times"></i></span>
+                <% } %>
+            </legend>
+            <div class="tag-content">
+                <% if(typeof text !== "undefined") { %>
+                    <div class="control-group">
+                        <label class="control-label">Text</label>
+                        <div class="controls">
+                            <textarea class="input-large text-container"><%- text %></textarea>
+                        </div>
                     </div>
-                </div>
-            <% } %>
+                <% } %>
+            </div>
+            <legend>&lt;/<%- xmlName %>&gt;</legend>
 		</script>
 
         <script type="text/template" id="tagGroup-template">
             <fieldset>
-                <legend>Balise<% if(multiple) { %>s<% } %> &lt;<%- xmlName %>&gt;</legend>
                 <div class="tagGroup-content"></div>
                 <% if(addable) { %>
-                   <div class="btn add-button">Ajouter une balise <%- xmlName %></div>
+                   <div class="btn btn-success add-button" title="Ajouter une balise <%- xmlName %>"><i class="fa fa-plus"></i></div>
                 <% } %>
             </fieldset>
         </script>
@@ -123,13 +77,12 @@
                         } %>
                     </div>
                     <% } else { %>
-                        <div class="btn add-button">Ajouter <%- xmlName %></div>
+                        <div class="btn btn-warning add-button">Ajouter <%- xmlName %></div>
                     <% } %>
             </div>
 		</script>
 
         <script type="text/template" id="attrCollection-template">
-            <legend>Attributs de la balise</legend>
         </script>
 
         <script type="text/javascript" src="../cfg/config.js"></script>

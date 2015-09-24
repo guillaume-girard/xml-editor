@@ -1,0 +1,86 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+}
+#wrapper {
+    width: auto;
+    float: left;
+    margin: 10px;
+}
+#wrapper::after {
+    content: " ";
+    display: table;
+    clear: both;
+    float:left;
+    width: 100%;
+}
+.tag-content {
+    margin-left: 20px;
+    border-left: 1px dashed lightgrey;
+    padding-left: 20px;
+}
+.tag, .attribute {
+    position: relative;
+}
+.tag {
+    padding: 5px;
+}
+
+.attribute:hover > .delete-button, 
+.tag > legend:hover .delete-button {
+    display: block;
+}
+#wrapper legend {
+    position: relative;
+    display: inline-block;
+    width: auto;
+    padding-right: 35px;
+    margin-bottom: 0;
+    border-bottom: 0;
+}
+.delete-button {
+    transition: opacity 0.5s;
+    width: 30px; height: 30px; display: none;
+    border-radius: 20px;
+    color: whitesmoke; text-align: center; font-size: 20px; font-weight: bold; line-height: 30px;
+    background-color: rgb(176,0,0);
+    opacity: 0.2;
+    position: absolute;
+    cursor: pointer;
+    top: calc(50% - 15px); right: 0;
+}
+
+.delete-button:hover {
+    transition: opacity 0.5s;
+    opacity: 1;
+}
+
+.attribute {
+    padding-right: 35px;
+}
+.attribute .control-group {
+    margin-bottom: 2px;
+}
+.attribute .control-label {
+    text-align: center;
+    background-color: #FFC107;
+    margin: auto;
+    height: 25px;
+    line-height: 25px;
+    position: relative;
+}
+.attribute .control-label::after {
+    content: "=";
+    position: absolute;
+    right: -20px;
+    width: 20px;
+}
+
+
+#json-receiver {
+    float: left;
+    width: 400px;
+}
+#getJSON {
+    float: left;
+}
