@@ -1,7 +1,8 @@
 <!doctype html>
 <html>
-	<head>
-		<title>Backbone XMLEditor</title>
+    <head>
+        <meta charset="utf-8">
+        <title>Backbone XMLEditor</title>
         <link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
         <link rel="stylesheet" type="text/css" href="../css/styles.css">
         <link rel="stylesheet" href="../font-awesome/css/font-awesome.min.css">
@@ -10,7 +11,7 @@
 	<body>
         <form class="form-horizontal">
     		<div id="wrapper">
-    			
+
     		</div>
             <pre id="json-receiver"></pre>
             <button id="getJSON">Get JSON</button>
@@ -22,7 +23,7 @@
 
 
 
-		<script type="text/template" id="tag-template">
+        <script type="text/template" id="tag-template">
             <legend>
                 &lt;<%- xmlName %>&gt;
                 <% if(deletable) { %>
@@ -40,7 +41,7 @@
                 <% } %>
             </div>
             <legend>&lt;/<%- xmlName %>&gt;</legend>
-		</script>
+        </script>
 
         <script type="text/template" id="tagGroup-template">
             <fieldset>
@@ -51,7 +52,7 @@
             </fieldset>
         </script>
 
-		<script type="text/template" id="attr-template">
+        <script type="text/template" id="attr-template">
             <% if(!required && typeof value !== 'undefined') { %>
                 <div class="delete-button" title="Supprimer l'attribut <%- xmlName %>"><i class="fa fa-times"></i></div>
             <% } %>
@@ -83,7 +84,7 @@
                         <div class="btn btn-warning add-button">Ajouter <%- xmlName %></div>
                     <% } %>
             </div>
-		</script>
+        </script>
 
         <script type="text/template" id="attrCollection-template">
         </script>
@@ -91,7 +92,7 @@
         <script type="text/javascript" src="../cfg/config.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
         <script type="text/javascript" src="../libs/underscore.js"></script>
-		<script type="text/javascript" src="../libs/backbone.js"></script>
+        <script type="text/javascript" src="../libs/backbone.js"></script>
         <script type="text/javascript" src="../models/AttributeModel.js"></script>
         <script type="text/javascript" src="../views/AttributeView.js"></script>
         <script type="text/javascript" src="../collections/AttributeCollection.js"></script>
